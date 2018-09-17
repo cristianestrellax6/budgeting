@@ -1,39 +1,37 @@
-let categories,description,value,income,addButton,budgetGrid;
+let categories, description, value, income, addButton, budgetGrid;
 
 module.exports = {
-
-  init:()=>{
+  init: () => {
     description = element(by.name('description'));
-    value       = element(by.name('value'));
-    income      = element(by.cssContainingText('option','Income'));
-    addButton   = element(by.css("form button"));
-    budgetGrid  = $$('.components-BudgetGridRow-style__cellContent');
+    value = element(by.name('value'));
+    income = element(by.cssContainingText('option', 'Income'));
+    addButton = element(by.css('form button'));
+    budgetGrid = $$('.components-BudgetGridRow-style__cellContent');
   },
 
-  get: ()=> {
+  get: () => {
     browser.get('http://localhost:8000/budget');
   },
 
-  setDescription: (desc)=> {
+  setDescription: desc => {
     description.sendKeys(desc);
   },
 
-  setValue:(numberValue)=> {
+  setValue: numberValue => {
     value.sendKeys(numberValue);
   },
 
-  clickAddButton: ()=>{
+  clickAddButton: () => {
     addButton.submit();
   },
 
-  getLastValue: ()=>{
-    return budgetGrid.last().getText().then(function (text) {
-      return text;
-    });
-  },
+  getLastValue: () =>
+    budgetGrid
+      .last()
+      .getText()
+      .then(text => text),
 
-  setIncomeCategory:()=>{
+  setIncomeCategory: () => {
     income.click();
-  }
-
+  },
 };
