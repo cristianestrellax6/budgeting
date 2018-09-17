@@ -4,14 +4,20 @@ const chaiAsPromised = require('chai-as-promised');
 exports.config = {
   // seleniumAddress: 'http://localhost:4444/wd/hub',
   directConnect: true,
-
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
     browserName: 'chrome',
     shardTestFiles: true,
     maxInstances: 1,
     chromeOptions: {
-      args: ['--test-type'],
+      args: [
+        '--test-type',
+        '--no-sandbox',
+        '--disable-infobars',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+        '--headless',
+      ],
     },
   },
 

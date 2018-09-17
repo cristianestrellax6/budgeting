@@ -10,6 +10,7 @@ To run this tests:
 __Prerequisites__:  Clone this repo, install dependencies and start de app:
 
     git clone git@github.com:cristianestrellax6/budgeting.git
+    cd budgeting
     npm install
     npm start
     
