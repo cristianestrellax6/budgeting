@@ -1,22 +1,27 @@
 const budgetPage = require('../pages/budget_page.js');
 
-Given('a user go to budgeting app', () => {
-  budgetPage.init();
-  budgetPage.get();
+Given('A user go to {string}',function(url) {
+  return budgetPage.get(url);
 });
 
-When('Description is filled with valid data', () => {
-  budgetPage.setDescription('Test 01');
+When('Income category is selected',function() {
+  return budgetPage.clickIncomeOption();
 });
 
-When('Value is filled with valid data', () => {
-  budgetPage.setValue('300.5');
+When('Description is filled with {string}',function(desc) {
+  budgetPage.setDescription(desc);
+});
+When('Value is filled with {string}',function(val) {
+  return budgetPage.setValue(val);
+});
+When('The Add button is clicked',function() {
+  return budgetPage.clickAddButton();
 });
 
-When('the Add button is clicked', () => {
-  budgetPage.clickAddButton();
+Then('Description {string} should be displayed in the budget grid',function(desc) {
+  return expect(budgetPage.isDescription()).to.eventually.equal(desc);
 });
 
-Then('a new row with the correct data is displayed at the end on the budget grid', () => {
-  expect(budgetPage.getLastValue()).to.eventually.equal('300.5');
+Then('Amount {string} should be displayed in the budget grid',function(value) {
+  return expect(budgetPage.isAmount()).to.eventually.equal(value);
 });

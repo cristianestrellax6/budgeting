@@ -23,8 +23,9 @@ Install project dependencies:
     
     npm install
 
-Run tests:
+Start selenium-server and Run tests:
     
+    npm run selenium-server
     npm test
 
 

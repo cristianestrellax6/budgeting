@@ -3,15 +3,19 @@
   "description": "e2e tests with protractor/cucumber/chai",
   "version": "0.0.1",
   "scripts": {
-    "test": "./node_modules/protractor/bin/webdriver-manager update && ./node_modules/protractor/bin/protractor conf.js"
+    "selenium-server": "./node_modules/protractor/bin/webdriver-manager update && ./node_modules/protractor/bin/webdriver-manager start",
+    "test": "./node_modules/protractor/bin/protractor conf.js"
   },
+  "repository": "https://github.com/cristianestrellax6/budgeting",
+  "author": "cristianestrellax6",
+  "license": "UNLICENSED",
   "dependencies": {
     "chai": "4.1.2",
-    "chai-as-promised": "7.1.1",
     "cucumber": "5.0.1",
     "protractor": "5.4.1"
   },
   "devDependencies": {
+    "chai-as-promised": "7.1.1",
     "protractor-cucumber-framework": "6.1.1",
     "protractor-multiple-cucumber-html-reporter-plugin": "1.8.0"
   }

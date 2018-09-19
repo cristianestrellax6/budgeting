@@ -1,37 +1,42 @@
-let categories, description, value, income, addButton, budgetGrid;
+const BudgetPage = function() {
+  this.description = element(by.name('description'));
+  this.value = element(by.name('value'));
+  this.addButton = element(by.css('form button'));
+  this.budgetGrid = $$('.components-BudgetGridRow-style__cellContent');
+  this.incomeOption = element(by.cssContainingText('option', 'Income'));
 
-module.exports = {
-  init: () => {
-    description = element(by.name('description'));
-    value = element(by.name('value'));
-    income = element(by.cssContainingText('option', 'Income'));
-    addButton = element(by.css('form button'));
-    budgetGrid = $$('.components-BudgetGridRow-style__cellContent');
-  },
+  this.clickIncomeOption = function() {
+    this.incomeOption.click();
+  };
 
-  get: () => {
-    browser.get('http://localhost:8000/budget');
-  },
+  this.setDescription = function(desc) {
+    this.description.sendKeys(desc);
+  };
 
-  setDescription: desc => {
-    description.sendKeys(desc);
-  },
+  this.setValue = function(val) {
+    this.value.sendKeys(val);
+  };
 
-  setValue: numberValue => {
-    value.sendKeys(numberValue);
-  },
+  this.clickAddButton = function() {
+    this.addButton.click();
+  };
 
-  clickAddButton: () => {
-    addButton.submit();
-  },
-
-  getLastValue: () =>
-    budgetGrid
-      .last()
+  this.isDescription = function() {
+    return this.budgetGrid
+      .get(this.budgetGrid.count().then(count => count - 2))
       .getText()
-      .then(text => text),
+      .then(text => text);
+  };
 
-  setIncomeCategory: () => {
-    income.click();
-  },
+  this.isAmount = function() {
+    return this.budgetGrid
+      .get(this.budgetGrid.count().then(count => count - 1))
+      .getText()
+      .then(text => text);
+  };
+
+  this.get = function(url) {
+    browser.get(url);
+  };
 };
+module.exports = new BudgetPage();
